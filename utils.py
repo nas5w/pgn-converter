@@ -2,10 +2,8 @@ from os import listdir, path
 import re
 import math
 
-dirname = path.dirname(__file__)
-
 def get_files_in_directory(dir, ext):
-    all_files = listdir(path.join(dirname, dir))
+    all_files = listdir(dir)
     matches = [];
     for filename in all_files:
         root, end = path.splitext(filename)
@@ -14,13 +12,13 @@ def get_files_in_directory(dir, ext):
     return matches
 
 def convert_lichess_to_chessbase(file_path):
-    with open(path.join(dirname, file_path)) as f:
+    with open(file_path) as f:
         file = f.read()
     # Replace emt with clk
     return file.replace("%clk", "%emt")
 
 def convert_chessbase_to_lichess(file_path):
-    with open(path.join(dirname, file_path)) as f:
+    with open(file_path) as f:
         file = f.read()
     # Change all "%emt" to "%clk"
     file = file.replace("%emt", "%clk")
