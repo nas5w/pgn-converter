@@ -28,9 +28,19 @@ def convert_chessbase_to_lichess(file_path):
     # Every other line is the move data. Strip line breaks from those.
     i = 1
     while i < len(file_parts):
+        # Get initial clock time
+        clock_time = re.search("%clk (.*?)]", file_parts[i])
+        time_control = clock_to_seconds(clock_time.group(1))
+        # Insert time control
+        file_parts[i-1] = f'{file_parts[i-1]}\n[TimeControl "{time_control}"]'
+        # Remove line breaks
         file_parts[i] = file_parts[i].replace("\n", "")
         # Make sure clock isn't messed up
         file_parts[i] = re.sub("( :|: )", "", file_parts[i])
         i += 2
 
     return "\n\n".join(file_parts)
+
+def clock_to_seconds(clock_time):
+    hours, minutes, seconds = clock_time.split(":")
+    return f"{int(hours) * 60 * 60 + int(minutes) * 60 + int(seconds)}+0"
