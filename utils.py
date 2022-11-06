@@ -1,4 +1,6 @@
 from os import listdir, path
+import re
+
 dirname = path.dirname(__file__)
 
 def get_files_in_directory(dir, ext):
@@ -27,6 +29,8 @@ def convert_chessbase_to_lichess(file_path):
     i = 1
     while i < len(file_parts):
         file_parts[i] = file_parts[i].replace("\n", "")
+        # Make sure clock isn't messed up
+        file_parts[i] = re.sub("( :|: )", "", file_parts[i])
         i += 2
 
-    return  "\n\n".join(file_parts)
+    return "\n\n".join(file_parts)

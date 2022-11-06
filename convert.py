@@ -36,4 +36,6 @@ if len(chessbase_todo) > 0:
     for filename in chessbase_todo:
         print(filename)
         converted = utils.convert_chessbase_to_lichess(f"{CHESSBASE_DIR}/{filename}")
-        print(converted)
+        with open(path.join(dirname, f"{LICHESS_DIR}/{filename}"), "w") as f:
+            f.write(converted)
+        print(f"{filename}...DONE")
