@@ -1,6 +1,7 @@
 from os.path import isfile, join
 import utils
 
+
 LICHESS_DIR = "./lichess"
 CHESSBASE_DIR = "./chessbase"
 
