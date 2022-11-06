@@ -26,19 +26,26 @@ for filename in chessbase_input_files:
     if filename not in chessbase_output_files:
         chessbase_todo.append(filename)
 
+print("-----")
+
 if len(lichess_todo) > 0:
-    print("Converting lichess to chessbase...")
+    print(f"Converting {len(lichess_todo)} lichess to chessbase file(s):")
     for filename in lichess_todo:
         converted = utils.convert_lichess_to_chessbase(path.join(LICHESS_INPUT_DIR, filename))
         with open(path.join(LICHESS_OUTPUT_DIR, filename), "w") as f:
             f.write(converted)
         print(f"{filename}...DONE")
+else:
+    print("No new lichess to chessbase files.")
 
+print("-----")
 
 if len(chessbase_todo) > 0:
-    print("Converting chessbase to lichess...")
+    print(f"Converting {len(chessbase_todo)} chessbase to lichess file(s):")
     for filename in chessbase_todo:
         converted = utils.convert_chessbase_to_lichess(path.join(CHESSBASE_INPUT_DIR, filename))
         with open(path.join(CHESSBASE_OUTPUT_DIR, filename), "w") as f:
             f.write(converted)
         print(f"{filename}...DONE")
+else:
+    print("No new chessbase to lichess files.")
