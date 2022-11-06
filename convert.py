@@ -6,23 +6,24 @@ dirname = path.dirname(__file__)
 
 LICHESS_INPUT_DIR = path.join(dirname, "lichess-to-chessbase", "input")
 LICHESS_OUTPUT_DIR = path.join(dirname, "lichess-to-chessbase", "output")
-
 CHESSBASE_INPUT_DIR = path.join(dirname, "chessbase-to-lichess", "input")
 CHESSBASE_OUTPUT_DIR = path.join(dirname, "chessbase-to-lichess", "output")
 
-lichess_files = utils.get_files_in_directory(LICHESS_INPUT_DIR, ".pgn")
-chessbase_files = utils.get_files_in_directory(CHESSBASE_INPUT_DIR, ".pgn")
+lichess_input_files = utils.get_files_in_directory(LICHESS_INPUT_DIR, ".pgn")
+lichess_output_files = utils.get_files_in_directory(LICHESS_OUTPUT_DIR, ".pgn")
+chessbase_input_files = utils.get_files_in_directory(CHESSBASE_INPUT_DIR, ".pgn")
+chessbase_output_files = utils.get_files_in_directory(CHESSBASE_OUTPUT_DIR, ".pgn")
 
 # Get lichess todo list
 lichess_todo = []
-for filename in lichess_files:
-    if filename not in chessbase_files:
+for filename in lichess_input_files:
+    if filename not in lichess_output_files:
         lichess_todo.append(filename)
 
 # Get chessbase todo list
 chessbase_todo = []
-for filename in chessbase_files:
-    if filename not in lichess_files:
+for filename in chessbase_input_files:
+    if filename not in chessbase_output_files:
         chessbase_todo.append(filename)
 
 if len(lichess_todo) > 0:
