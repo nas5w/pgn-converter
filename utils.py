@@ -27,11 +27,16 @@ def convert_chessbase_to_lichess(file_path):
     # Every other line is the move data. Strip line breaks from those.
     i = 1
     while i < len(file_parts):
-        # Get initial clock time
-        clock_time = re.search("%clk (.*?)]", file_parts[i])
-        time_control = clock_to_seconds(clock_time.group(1))
-        # Insert time control
-        file_parts[i-1] = f'{file_parts[i-1]}\n[TimeControl "{time_control}"]'
+        try:
+            # Get initial clock time
+            clock_time = re.search("%clk (.*?)]", file_parts[i])
+            time_control = clock_to_seconds(clock_time.group(1))
+            # Insert time control
+            file_parts[i-1] = f'{file_parts[i-1]}\n[TimeControl "{time_control}"]'
+        except:
+            # No clock, not a big deal
+            pass
+            
         # Remove line breaks
         file_parts[i] = file_parts[i].replace("\n", "")
         # Make sure clock isn't messed up

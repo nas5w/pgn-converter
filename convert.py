@@ -34,7 +34,7 @@ if len(lichess_todo) > 0:
         converted = utils.convert_lichess_to_chessbase(path.join(LICHESS_INPUT_DIR, filename))
         with open(path.join(LICHESS_OUTPUT_DIR, filename), "w") as f:
             f.write(converted)
-        print(f"{filename}...DONE")
+        print(f"  {filename}...DONE")
 else:
     print("No new lichess to chessbase files.")
 
@@ -46,6 +46,6 @@ if len(chessbase_todo) > 0:
         converted = utils.convert_chessbase_to_lichess(path.join(CHESSBASE_INPUT_DIR, filename))
         with open(path.join(CHESSBASE_OUTPUT_DIR, filename), "w") as f:
             f.write(converted)
-        print(f"{filename}...DONE")
+        print(f"  {filename}...DONE")
 else:
     print("No new chessbase to lichess files.")
