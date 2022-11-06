@@ -29,4 +29,4 @@ def convert_chessbase_to_lichess(file_path):
         file_parts[i] = file_parts[i].replace("\n", "")
         i += 2
 
-    return file_parts
+    return  "\n\n".join(file_parts)

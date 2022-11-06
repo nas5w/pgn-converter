@@ -1,6 +1,8 @@
+from os import path
 from os.path import isfile, join
 import utils
 
+dirname = path.dirname(__file__)
 
 LICHESS_DIR = "./lichess"
 CHESSBASE_DIR = "./chessbase"
@@ -24,7 +26,7 @@ if len(lichess_todo) > 0:
     print("Converting lichess to chessbase...")
     for filename in lichess_todo:
         converted = utils.convert_lichess_to_chessbase(f"{LICHESS_DIR}/{filename}")
-        with open(f"{CHESSBASE_DIR}/{filename}", "w") as f:
+        with open(path.join(dirname, f"{CHESSBASE_DIR}/{filename}"), "w") as f:
             f.write(converted)
         print(f"{filename}...DONE")
 
