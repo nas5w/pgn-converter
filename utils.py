@@ -1,5 +1,6 @@
 from os import listdir, path
 import re
+import math
 
 dirname = path.dirname(__file__)
 
@@ -43,4 +44,7 @@ def convert_chessbase_to_lichess(file_path):
 
 def clock_to_seconds(clock_time):
     hours, minutes, seconds = clock_time.split(":")
-    return f"{int(hours) * 60 * 60 + int(minutes) * 60 + int(seconds)}+0"
+    total_seconds = int(hours) * 60 * 60 + int(minutes) * 60 + int(seconds)
+    # Do some rounding (10 minutes)
+    rounded_seconds = math.ceil(total_seconds / 600) * 600
+    return f"{rounded_seconds}+0"
