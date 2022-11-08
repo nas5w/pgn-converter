@@ -15,7 +15,10 @@ def convert_lichess_to_chessbase(file_path):
     with open(file_path) as f:
         file = f.read()
     # Replace emt with clk
-    return file.replace("%clk", "%emt")
+    file = file.replace("%clk", "%emt")
+    # Remove UTC date/time fields
+    file = re.sub("\[UTC.*\\n?", "", file)
+    return file
 
 def convert_chessbase_to_lichess(file_path):
     with open(file_path) as f:
