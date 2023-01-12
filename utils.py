@@ -12,7 +12,7 @@ def get_files_in_directory(dir, ext):
     return matches
 
 def convert_lichess_to_chessbase(file_path):
-    with open(file_path) as f:
+    with open(file_path, encoding="utf8") as f:
         file = f.read()
     # Replace emt with clk
     file = file.replace("%clk", "%emt")
@@ -21,7 +21,7 @@ def convert_lichess_to_chessbase(file_path):
     return file
 
 def convert_chessbase_to_lichess(file_path):
-    with open(file_path) as f:
+    with open(file_path, encoding="utf8") as f:
         file = f.read()
     # Change all "%emt" to "%clk"
     file = file.replace("%emt", "%clk")
