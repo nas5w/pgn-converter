@@ -72,6 +72,31 @@ Converting 1 chessbase to lichess file(s):
   my-game-file.pgn...DONE
 ```
 
+# Testing
+
+The project has a suite of unit tests covering the conversion logic in `utils.py`. Tests use the Python standard library `unittest` and have no external dependencies, so no installation is required.
+
+Run the tests from the project root:
+
+```bash
+python -m unittest test_utils
+```
+
+For verbose output showing each individual test:
+
+```bash
+python -m unittest test_utils -v
+```
+
+All tests should pass:
+
+```
+----------------------------------------------------------------------
+Ran 18 tests in 0.004s
+
+OK
+```
+
 # Contributing
 
 If you see any issues or want to make and contributions, please open a GitHub issue and we can discuss!

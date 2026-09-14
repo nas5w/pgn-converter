@@ -36,8 +36,8 @@ def convert_chessbase_to_lichess(file_path):
             time_control = clock_to_seconds(clock_time.group(1))
             # Insert time control
             file_parts[i-1] = f'{file_parts[i-1]}\n[TimeControl "{time_control}"]'
-        except:
-            # No clock, not a big deal
+        except (AttributeError, ValueError):
+            # No clock or unparseable time, not a big deal
             pass
             
         # Remove line breaks
